@@ -3,7 +3,8 @@
 namespace Database\Migrations;
 
 use Engine\Decorators\RawSQL;
-use Engine\ITransaction;
+use Tool\Engine\ITransaction;
+
 
 class group_permission_05_05_2020_02_00_35 implements ITransaction
 {

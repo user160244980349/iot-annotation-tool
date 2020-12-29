@@ -1,8 +1,9 @@
 <?php
 
-namespace Engine\CommandHandlers;
+namespace Tool\Engine\CommandHandlers;
 
-use Engine\Decorators\Seed as S;
+use Tool\Engine\Decorators\Seed as S;
+
 
 /**
  * Seed.php

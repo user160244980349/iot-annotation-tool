@@ -1,11 +1,11 @@
 <?php
 
-namespace Engine\Services;
+namespace Tool\Engine\Services;
 
-use Engine\Decorators\Seed;
 use Engine\Decorators\RawSQL;
-use Engine\Env;
-use Engine\ITransaction;
+use Tool\Engine\Decorators\Seed;
+use Tool\Engine\ITransaction;
+
 
 /**
  * Migration.php

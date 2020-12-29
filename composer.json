@@ -11,15 +11,15 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
-      "Engine\\": "engine/",
-      "Web\\App\\": "../php-engine/app/",
-      "Web\\Engine\\": "../php-engine/engine/",
+      "Tool\\App\\": "app/",
+      "Tool\\Engine\\": "engine/",
+      "App\\": "../php-engine/app/",
+      "Engine\\": "../php-engine/engine/",
       "Database\\Seeds\\": "database/seeds/",
       "Database\\Migrations\\": "database/migrations/"
     },
     "files": [
-      "../php-engine/env.php"
+      "env.php"
     ]
   }
 }

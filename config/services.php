@@ -3,8 +3,8 @@
 return [
     
     Engine\Services\RawSQL::class,
-    Engine\Services\Console::class,
-    Engine\Services\Migration::class,
-    Engine\Services\Seed::class,
+    Tool\Engine\Services\Console::class,
+    Tool\Engine\Services\Migration::class,
+    Tool\Engine\Services\Seed::class,
 
 ];

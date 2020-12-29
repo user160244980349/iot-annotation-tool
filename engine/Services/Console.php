@@ -1,8 +1,6 @@
 <?php
 
-namespace Engine\Services;
-
-use Engine\Decorators\Configuration;
+namespace Tool\Engine\Services;
 
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Engine\Decorators;
+namespace Tool\Engine\Decorators;
 
 use Engine\ServiceBus;
 

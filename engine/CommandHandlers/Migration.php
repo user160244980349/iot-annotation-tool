@@ -1,8 +1,9 @@
 <?php
 
-namespace Engine\CommandHandlers;
+namespace Tool\Engine\CommandHandlers;
 
-use Engine\Decorators\Migration as M;
+use Tool\Engine\Decorators\Migration as M;
+
 
 /**
  * Migration.php

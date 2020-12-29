@@ -1,6 +1,6 @@
 <?php
 
-use Engine\Decorators\Console;
+use Tool\Engine\Decorators\Console;
 
 # Call application
 Console::run($argv);
