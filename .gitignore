@@ -1,9 +1,6 @@
 /.idea/
 /.vscode/
 /vendor/
-/node_modules/
 /composer.lock
 /package-lock.json
 /env.php
-/tool
-/frontend
