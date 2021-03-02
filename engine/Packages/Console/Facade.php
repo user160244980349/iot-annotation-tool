@@ -1,16 +1,15 @@
 <?php
 
-namespace Tool\Engine\Decorators;
+namespace Tool\Engine\Packages\Console;
 
-use Engine\ServiceBus;
-
+use Engine\Packages\ServiceBus;
 
 /**
  * Console.php
  *
  * Console decorator.
  */
-class Console
+class Facade
 {
 
     /**

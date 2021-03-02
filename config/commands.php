@@ -1,10 +1,11 @@
 <?php
 
-use Tool\Engine\Command;
-use Tool\Engine\CommandHandlers\Migration;
-use Tool\Engine\CommandHandlers\Seed;
+use Tool\Engine\Packages\Console\Command;
+use Tool\Engine\Packages\Migration\Handler as Migration;
+use Tool\Engine\Packages\Seed\Handler as Seed;
+use Engine\Config;
 
-return [
+Config::set('commands', [
 
     # Migrations & seeds
     new Command('migrations.create', [Migration::class, 'create']),
@@ -14,4 +15,4 @@ return [
     new Command('seeds.create', [Seed::class, 'create']),
     new Command('seeds.do', [Seed::class, 'do'])
 
-];
+]);

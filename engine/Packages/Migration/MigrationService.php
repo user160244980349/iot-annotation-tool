@@ -1,10 +1,11 @@
 <?php
 
-namespace Tool\Engine\Services;
+namespace Tool\Engine\Packages\Migration;
 
-use Engine\Decorators\RawSQL;
-use Tool\Engine\Decorators\Seed;
-use Tool\Engine\ITransaction;
+use Engine\Packages\RawSQL\Facade as RawSQL;
+use Tool\Engine\Packages\Seed\Facade as Seed;
+use Tool\Engine\Packages\ITransaction;
+use Engine\Config;
 
 
 /**
@@ -12,7 +13,7 @@ use Tool\Engine\ITransaction;
  *
  * Command class to deploy RawSQL schemes.
  */
-class Migration
+class MigrationService
 {
     /**
      * Alias for service.
@@ -36,7 +37,7 @@ class Migration
      */
     public function __construct()
     {
-        $this->_migrations_list = require_once ENV['migrations_list'];
+        $this->_migrations_list = Config::get('migrations');
     }
 
     /**
@@ -48,7 +49,7 @@ class Migration
     public function create(string $name): void
     {
 
-        $path = ENV['migrations'];
+        $path = Config::get('env')['migrations'];
         $date = date('m_d_Y_H_i_s');
         $file = "{$path}/{$name}_{$date}.php";
         $content =
@@ -114,13 +115,13 @@ EOT;
      */
     public function undo(): void
     {
-        RawSQL::fetch('SET foreign_key_checks = 0');
+        RawSQL::query('SET foreign_key_checks = 0')->fetch();
         foreach ($this->_migrations_list as $migration) {
             if (in_array(ITransaction::class, class_implements($migration))) {
                 $migration::revert();
             }
         }
-        RawSQL::fetch('SET foreign_key_checks = 1');
+        RawSQL::query('SET foreign_key_checks = 1')->fetch();
     }
 
     /**

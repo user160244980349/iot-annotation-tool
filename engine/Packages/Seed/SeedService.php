@@ -1,9 +1,10 @@
 <?php
 
-namespace Tool\Engine\Services;
+namespace Tool\Engine\Packages\Seed;
 
-use Engine\Decorators\RawSQL;
-use Tool\Engine\ITransaction;
+use Engine\Packages\RawSQL\Facade as RawSQL;
+use Tool\Engine\Packages\ITransaction;
+use Engine\Config;
 
 
 /**
@@ -11,7 +12,7 @@ use Tool\Engine\ITransaction;
  *
  * Command class to upload seeds.
  */
-class Seed
+class SeedService
 {
     /**
      * Alias for service.
@@ -35,7 +36,7 @@ class Seed
      */
     public function __construct()
     {
-        $this->_seeds_list = require_once ENV['seeds_list'];
+        $this->_seeds_list = Config::get('seeds');
     }
 
     /**
@@ -47,7 +48,7 @@ class Seed
     public function create(string $name): void
     {
 
-        $path = ENV['seeds'];
+        $path = Config::get('env')['seeds'];
         $date = date("m_d_Y_H_i_s");
         $file = "{$path}/{$name}_{$date}.php";
         $content =

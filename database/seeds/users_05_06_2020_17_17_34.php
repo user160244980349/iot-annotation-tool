@@ -2,8 +2,10 @@
 
 namespace Database\Seeds;
 
-use Engine\Decorators\RawSQL;
+use Engine\Packages\RawSQL\Facade as RawSQL;
 use Tool\Engine\ITransaction;
+use Engine\Packages\ServiceBus;
+use PDO;
 
 
 /**
@@ -20,7 +22,7 @@ class users_05_06_2020_17_17_34 implements ITransaction
      */
     public static function commit()
     {
-        RawSQL::fetch(
+        RawSQL::query(
             'INSERT INTO `users` (
                 `name`,
                 `email` 
@@ -28,8 +30,8 @@ class users_05_06_2020_17_17_34 implements ITransaction
             (\'Pete\', \'pete@box.com\'),
             (\'Bob\', \'bob@box.com\'),
             (\'Steve\', \'steve@box.com\'),
-            (\'Maria\', \'maria@box.com\')'
-        );
+            (\'Maria\', \'maria@box.com\')')
+            ->fetchAll();
     }
 
     /**

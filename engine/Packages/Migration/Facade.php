@@ -1,16 +1,15 @@
 <?php
 
-namespace Tool\Engine\Decorators;
+namespace Tool\Engine\Packages\Migration;
 
-use Engine\ServiceBus;
-
+use Engine\Packages\ServiceBus;
 
 /**
  * Application.php
  *
  * Decorator class for application.
  */
-class Migration
+class Facade
 {
 
     /**

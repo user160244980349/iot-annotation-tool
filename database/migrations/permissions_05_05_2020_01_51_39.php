@@ -2,8 +2,9 @@
 
 namespace Database\Migrations;
 
-use Engine\Decorators\RawSQL;
+use Engine\Packages\RawSQL\Facade as RawSQL;
 use Tool\Engine\ITransaction;
+use PDO;
 
 
 class permissions_05_05_2020_01_51_39 implements ITransaction
@@ -15,12 +16,12 @@ class permissions_05_05_2020_01_51_39 implements ITransaction
      */
     public static function commit()
     {
-        RawSQL::fetch(
+        RawSQL::query(
             'CREATE TABLE `permissions` (
                 `id`        INT PRIMARY KEY AUTO_INCREMENT,
                 `for`       VARCHAR(255)
-            )'
-        );
+            )')
+            ->fetchAll();
     }
 
     /**
@@ -29,7 +30,8 @@ class permissions_05_05_2020_01_51_39 implements ITransaction
      */
     public static function revert()
     {
-        RawSQL::fetch('DROP TABLE `permissions`');
+        RawSQL::query('DROP TABLE `permissions`')
+            ->fetchAll();
     }
 
 }

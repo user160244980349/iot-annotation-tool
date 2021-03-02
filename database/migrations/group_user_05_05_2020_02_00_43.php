@@ -2,8 +2,9 @@
 
 namespace Database\Migrations;
 
-use Engine\Decorators\RawSQL;
+use Engine\Packages\RawSQL\Facade as RawSQL;
 use Tool\Engine\ITransaction;
+use PDO;
 
 
 class group_user_05_05_2020_02_00_43 implements ITransaction
@@ -15,15 +16,15 @@ class group_user_05_05_2020_02_00_43 implements ITransaction
      */
     public static function commit()
     {
-        RawSQL::fetch(
+        RawSQL::query(
             'CREATE TABLE `group_user` (
                 `id`        INT PRIMARY KEY AUTO_INCREMENT,
                 `group_id`  INT,
                 `user_id`   INT,
                 FOREIGN KEY (`group_id`)    REFERENCES `groups`(`id`),
                 FOREIGN KEY (`user_id`)     REFERENCES `users`(`id`)
-            )'
-        );
+            )')
+            ->fetchAll();
     }
 
     /**
@@ -32,7 +33,8 @@ class group_user_05_05_2020_02_00_43 implements ITransaction
      */
     public static function revert()
     {
-        RawSQL::fetch('DROP TABLE `group_user`');
+        RawSQL::query('DROP TABLE `group_user`')
+            ->fetchAll();
     }
 
 }

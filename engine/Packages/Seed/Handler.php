@@ -1,9 +1,6 @@
 <?php
 
-namespace Tool\Engine\CommandHandlers;
-
-use Tool\Engine\Decorators\Seed as S;
-
+namespace Tool\Engine\Packages\Seed;
 
 /**
  * Seed.php
@@ -23,7 +20,7 @@ class Seed
     {
         print("creating seed...\n");
 
-        S::create($name);
+        Facade::create($name);
 
         print("seed has been created.\n");
     }
@@ -37,7 +34,7 @@ class Seed
     {
         print("uploading seeds...\n");
 
-        S::do();
+        Facade::do();
 
         print("seeds have been uploaded.\n");
     }

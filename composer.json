@@ -5,7 +5,6 @@
   "require": {
     "symfony/var-dumper": "^4.3",
     "gabordemooij/redbean": "dev-master",
-    "symfony/var-dumper": "^4.3",
     "ext-pdo": "*",
     "ext-readline": "*"
   },
@@ -19,7 +18,11 @@
       "Database\\Migrations\\": "database/migrations/"
     },
     "files": [
-      "env.php"
+      "env.php",
+      "config/commands.php",
+      "config/services.php",
+      "database/migrations.php",
+      "database/seeds.php"
     ]
   }
 }

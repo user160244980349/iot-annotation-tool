@@ -2,7 +2,6 @@
 
 namespace Tool\Engine;
 
-
 /**
  * ITransaction.php
  *

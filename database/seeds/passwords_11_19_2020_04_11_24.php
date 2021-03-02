@@ -2,8 +2,9 @@
 
 namespace Database\Seeds;
 
-use Engine\Decorators\RawSQL;
+use Engine\Packages\RawSQL\Facade as RawSQL;
 use Tool\Engine\ITransaction;
+use PDO;
 
 
 /**
@@ -20,15 +21,15 @@ class passwords_11_19_2020_04_11_24 implements ITransaction
      */
     public static function commit() {
         $password = md5(md5('123'));
-        RawSQL::fetch(
+        RawSQL::query(
             "INSERT INTO `passwords` (
                 `id`, `value`
             ) VALUES
             (1, '$password'),
             (2, '$password'),
             (3, '$password'),
-            (4, '$password')"
-        );
+            (4, '$password')")
+            ->fetchAll();
     }
     
     /**

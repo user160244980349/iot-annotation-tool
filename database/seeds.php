@@ -1,6 +1,8 @@
 <?php
 
-return [
+use Engine\Config;
+
+Config::set('seeds', [
 
     Database\Seeds\users_05_06_2020_17_17_34::class,
     Database\Seeds\passwords_11_19_2020_04_11_24::class,
@@ -9,4 +11,4 @@ return [
     Database\Seeds\group_permission_05_06_2020_18_42_18::class,
     Database\Seeds\group_user_05_06_2020_18_42_20::class,
     
-];
+]);

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tool\Engine\Decorators;
+namespace Tool\Engine\Packages\Seed;
 
-use Engine\ServiceBus;
+use Engine\Packages\ServiceBus;
 
 
 /**
@@ -10,7 +10,7 @@ use Engine\ServiceBus;
  *
  * Decorator class for application.
  */
-class Seed
+class Facade
 {
 
     /**

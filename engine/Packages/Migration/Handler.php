@@ -1,8 +1,6 @@
 <?php
 
-namespace Tool\Engine\CommandHandlers;
-
-use Tool\Engine\Decorators\Migration as M;
+namespace Tool\Engine\Packages\Migration;
 
 
 /**
@@ -10,7 +8,7 @@ use Tool\Engine\Decorators\Migration as M;
  *
  * Command class to deploy RawSQL schemes.
  */
-class Migration
+class Handler
 {
 
     /**
@@ -23,7 +21,7 @@ class Migration
     {
         print('creating migration...\n');
 
-        M::create($name);
+        Facade::create($name);
 
         print("migration has been created.\n");
     }
@@ -37,7 +35,7 @@ class Migration
     {
         print("setting up migrations...\n");
 
-        M::do();
+        Facade::do();
         
         print("migrations have been set up.\n");
     }
@@ -51,7 +49,7 @@ class Migration
     {
         print("reverting migrations...\n");
 
-        M::undo();
+        Facade::undo();
         
         print("all migrations have been reverted.\n");
     }
@@ -65,7 +63,7 @@ class Migration
     {
         print("resetting migrations...\n");
         
-        M::reset();
+        Facade::reset();
 
         print("all migrations have been reset.\n");
     }

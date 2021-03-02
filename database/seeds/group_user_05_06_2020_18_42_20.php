@@ -2,8 +2,9 @@
 
 namespace Database\Seeds;
 
-use Engine\Decorators\RawSQL;
+use Engine\Packages\RawSQL\Facade as RawSQL;
 use Tool\Engine\ITransaction;
+use PDO;
 
 
 /**
@@ -20,7 +21,7 @@ class group_user_05_06_2020_18_42_20 implements ITransaction
      */
     public static function commit()
     {
-        RawSQL::fetch(
+        RawSQL::query(
             'INSERT INTO `group_user` (
                 `group_id`,
                 `user_id`
@@ -29,8 +30,8 @@ class group_user_05_06_2020_18_42_20 implements ITransaction
             (2, 1),
             (1, 2),
             (1, 3),
-            (1, 4)'
-        );
+            (1, 4)')
+            ->fetchAll();
     }
 
     /**

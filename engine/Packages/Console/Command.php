@@ -1,7 +1,6 @@
 <?php
 
-namespace Tool\Engine;
-
+namespace Tool\Engine\Packages\Console;
 
 /**
  * Command.php
@@ -17,7 +16,7 @@ class Command
      * @access public
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * Controller.
@@ -25,7 +24,7 @@ class Command
      * @access public
      * @var array
      */
-    public $controller;
+    public array $controller;
 
     /**
      * Command constructor.
@@ -59,7 +58,7 @@ class Command
     }
 
     /**
-     * Excecution of command.
+     * Execution of command.
      *
      * @access public
      * @param array $controller - Controller

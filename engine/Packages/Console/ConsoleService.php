@@ -1,14 +1,15 @@
 <?php
 
-namespace Tool\Engine\Services;
+namespace Tool\Engine\Packages\Console;
 
+use Engine\Config;
 
 /**
  * Console.php
  *
  * Provides console interface for application.
  */
-class Console
+class ConsoleService
 {
 
     /**
@@ -17,7 +18,7 @@ class Console
      * @access public
      * @var string
      */
-    static public $alias = 'console';
+    static public string $alias = 'console';
 
     /**
      * Alias for service.
@@ -25,7 +26,7 @@ class Console
      * @access public
      * @var string
      */
-    private $_commands;
+    private array $_commands;
 
     /**
      * ServiceBus services registration.
@@ -35,7 +36,7 @@ class Console
      */
     public function __construct()
     {
-        $this->_commands = require_once ENV['commands'];
+        $this->_commands = Config::get('commands');
     }
 
     /**
