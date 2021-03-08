@@ -26,9 +26,8 @@ class permissions_05_06_2020_18_42_13 implements ITransaction
                 `for`
             ) VALUES
             (\'visit-home\'),
-            (\'manage-bp\'),
-            (\'manage-groups\'),
-            (\'manage-products\')')
+            (\'manage-users\'),
+            (\'manage-groups\')')
             ->fetchAll();
     }
 
