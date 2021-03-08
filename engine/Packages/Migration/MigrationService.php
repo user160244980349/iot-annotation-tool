@@ -4,7 +4,7 @@ namespace Tool\Engine\Packages\Migration;
 
 use Engine\Packages\RawSQL\Facade as RawSQL;
 use Tool\Engine\Packages\Seed\Facade as Seed;
-use Tool\Engine\Packages\ITransaction;
+use Tool\Engine\ITransaction;
 use Engine\Config;
 
 
@@ -48,6 +48,7 @@ class MigrationService
      */
     public function create(string $name): void
     {
+        print("Creating migration...\n");
 
         $path = Config::get('env')['migrations'];
         $date = date('m_d_Y_H_i_s');
@@ -76,9 +77,9 @@ class {$name}_{$date} implements ITransaction
      */
     public static function commit() {
         RawSQL::fetch(
-            "CREATE TABLE `$name` (
+            'CREATE TABLE `$name` (
                 `id` INT PRIMARY KEY AUTO_INCREMENT
-            )");
+            )');
     }
     
     /**
@@ -86,12 +87,14 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function revert() {
-        RawSQL::fetch("DROP TABLE `$name`");
+        RawSQL::fetch('DROP TABLE `$name`');
     }
 }
 EOT;
 
         file_put_contents($file, $content);
+
+        print("Migration has been created.\n");
     }
 
     /**
@@ -101,11 +104,16 @@ EOT;
      */
     public function do(): void
     {
+        print("Setting up migrations...\n");
+
         foreach ($this->_migrations_list as $migration) {
             if (in_array(ITransaction::class, class_implements($migration))) {
+                print("Migrating $migration\n");
                 $migration::commit();
             }
         }
+
+        print("Migrations have been set up.\n");
     }
 
     /**
@@ -115,6 +123,8 @@ EOT;
      */
     public function undo(): void
     {
+        print("Reverting migrations...\n");
+
         RawSQL::query('SET foreign_key_checks = 0')->fetch();
         foreach ($this->_migrations_list as $migration) {
             if (in_array(ITransaction::class, class_implements($migration))) {
@@ -122,18 +132,8 @@ EOT;
             }
         }
         RawSQL::query('SET foreign_key_checks = 1')->fetch();
-    }
 
-    /**
-     * Drops tables and up them again with seeding.
-     *
-     * @access public
-     */
-    public function reset(): void
-    {
-        $this->undo();
-        $this->do();
-        Seed::do();
+        print("All migrations have been reverted.\n");
     }
     
 }

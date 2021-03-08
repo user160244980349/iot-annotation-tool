@@ -1,6 +1,6 @@
 {
-  "name": "user/php-engine-tool",
-  "description": "php engine tool",
+  "name": "user/iot-annotation-tool",
+  "description": "iot-annotation tool",
   "type": "project",
   "require": {
     "symfony/var-dumper": "^4.3",
@@ -12,8 +12,8 @@
     "psr-4": {
       "Tool\\App\\": "app/",
       "Tool\\Engine\\": "engine/",
-      "App\\": "../php-engine/app/",
-      "Engine\\": "../php-engine/engine/",
+      "App\\": "../iot-annotation/app/",
+      "Engine\\": "../iot-annotation/engine/",
       "Database\\Seeds\\": "database/seeds/",
       "Database\\Migrations\\": "database/migrations/"
     },

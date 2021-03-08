@@ -45,15 +45,4 @@ class Facade
         ServiceBus::instance()->get('migration')->undo();
     }
 
-    /**
-     * Application run method.
-     *
-     * @access public
-     * @return void
-     */
-    public static function reset(): void
-    {
-        ServiceBus::instance()->get('migration')->reset();
-    }
-
 }

@@ -3,7 +3,7 @@
 namespace Tool\Engine\Packages\Seed;
 
 use Engine\Packages\RawSQL\Facade as RawSQL;
-use Tool\Engine\Packages\ITransaction;
+use Tool\Engine\ITransaction;
 use Engine\Config;
 
 
@@ -47,6 +47,7 @@ class SeedService
      */
     public function create(string $name): void
     {
+        print("creating seed...\n");
 
         $path = Config::get('env')['seeds'];
         $date = date("m_d_Y_H_i_s");
@@ -74,7 +75,7 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function commit() {
-        RawSQL::fetch("SELECT * FROM `table`");
+        RawSQL::fetch('SELECT * FROM `table`');
     }
     
     /**
@@ -82,12 +83,14 @@ class {$name}_{$date} implements ITransaction
      *
      */
     public static function revert() {
-        RawSQL::fetch("SELECT * FROM `table`");
+        RawSQL::fetch('SELECT * FROM `table`');
     }
 }
 EOT;
 
         file_put_contents($file, $content);
+
+        print("seed has been created.\n");
     }
 
     /**
@@ -97,17 +100,23 @@ EOT;
      */
     public function do(): void
     {
+        print("Uploading seeds...\n");
+
         foreach ($this->_seeds_list as $seed) {
+
             if (!in_array(ITransaction::class, class_implements($seed))) {
                 return;
             }
 
+            print("Uploading $seed\n");
             $seed::commit();
 
             $error = RawSQL::error();
             if ($error[0] != "00000")
                 dump($error);
         }
+
+        print("Seeds have been uploaded.\n");
     }
 
 }

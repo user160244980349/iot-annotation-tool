@@ -14,4 +14,7 @@ Config::set('env', [
     'db_user'     => 'php_engine',
     'db_password' => 'secret',
 
+    'migrations'      => __DIR__ . '/database/migrations',
+    'seeds'           => __DIR__ . '/database/seeds'
+
 ]);

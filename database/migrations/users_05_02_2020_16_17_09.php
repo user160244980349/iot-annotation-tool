@@ -4,6 +4,7 @@ namespace Database\Migrations;
 
 use Engine\Packages\RawSQL\Facade as RawSQL;
 use Tool\Engine\ITransaction;
+use Engine\Packages\ServiceBus;
 use PDO;
 
 
@@ -21,8 +22,7 @@ class users_05_02_2020_16_17_09 implements ITransaction
                 `id`        INT PRIMARY KEY AUTO_INCREMENT,
                 `name`      VARCHAR(255) UNIQUE,
                 `email`     VARCHAR(255) UNIQUE NOT NULL
-            )')
-            ->fetchAll();
+            )') ->fetchAll();
     }
 
     /**
